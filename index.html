@@ -866,23 +866,24 @@
 Angular的公共对象（public)都有前缀 <code><span class="pln">$</span></code>，私有对象都有前缀<code><span class="pln">$$</span></code>。请不要在你的代码里面使用<code><span class="pln">$</span></code> 或者 <code><span class="pln">$$</span></code> 前缀。
 </div>
 
-<h2 id="angular-modules" class="ng-scope">Angular Modules</h2>
+<h2 id="angular-modules" class="ng-scope">Angular模块</h2>
 <h2 id="-link-ng-ng-core-module-" class="ng-scope"><a href="api/ng">ng (核心模块)</a></h2>
-<p class="ng-scope">This module is provided by default and contains the core components of AngularJS.</p>
+<p class="ng-scope">这个module由angular默认提供，并且包含了AngularJS的核心组件。</p>
 <table class="definition-table spaced ng-scope">
   <tbody><tr>
     <td><a href="api/ng#directive">Directives</a></td>
     <td>
       <p>
-        This is the core collection of directives you would use in your template code to build an AngularJS application.
+      这是你在用模板（template）构建一个AngularJS应用时会用到的核心指令的集合。
+        
       </p>
 
       <p>
-        Some examples include:
+      包括以下例子：
           <a href="api/ng/directive/ngClick">ngClick</a>，
           <a href="api/ng/directive/ngInclude">ngInclude</a>，
           <a href="api/ng/directive/ngRepeat">ngRepeat</a>，
-          etc… <br>
+          等等… <br>
       </p>
     </td>
   </tr>
@@ -892,14 +893,14 @@ Angular的公共对象（public)都有前缀 <code><span class="pln">$</span></c
     </td>
     <td>
       <p>
-        This is the core collection of services which are used within the DI of your application.
+        这是一个在你的应用中会用到的核心服务的集合。
       </p>
       <p>
-        Some examples include:
+        包括以下例子:
           <a href="api/ng/service/$compile">$compile</a>，
           <a href="api/ng/service/$http">$http</a>，
           <a href="api/ng/service/$location">$location</a>，
-          etc…
+          等等…
       </p><p>
     </p></td>
   </tr>
@@ -908,17 +909,16 @@ Angular的公共对象（public)都有前缀 <code><span class="pln">$</span></c
       <a href="api/ng#filter">Filters</a>
     </td>
     <td>
-      <p>
-        The core filters available in the ng module are used to transform template data before it is rendered within directives and expressions.
+      <p>ng模块里面的过滤器（filters）可以在模板数据绑定到指令或者表达式之前转换它。
       </p>
       <p>
-        Some examples include:
+       包括以下例子:
           <a href="api/ng/filter/filter">filter</a>，
           <a href="api/ng/filter/date">date</a>，
           <a href="api/ng/filter/currency">currency</a>，
           <a href="api/ng/filter/lowercase">lowercase</a>，
           <a href="api/ng/filter/uppercase">uppercase</a>，
-            etc...
+            等等...
       </p>
     </td>
   </tr>
@@ -928,14 +928,14 @@ Angular的公共对象（public)都有前缀 <code><span class="pln">$</span></c
     </td>
     <td>
       <p>
-        The core global API functions are attached to the angular object. These core functions are useful for low level JavaScript operations within your application.
+      核心的全局API直接绑定到angular对象上。这心核心函数在你的应用的底层操作中十分有用。
       </p>
       <p>
         Some examples include:
         <a href="api/ng/function/angular.copy">angular.copy()</a>，
         <a href="api/ng/function/angular.equals">angular.equals()</a>，
         <a href="api/ng/function/angular.element">angular.element()</a>，
-          etc...
+          等等...
       </p>
     </td>
   </tr>
@@ -943,8 +943,8 @@ Angular的公共对象（public)都有前缀 <code><span class="pln">$</span></c
 
 
 <h2 id="-link-ngroute-ngroute-" class="ng-scope"><a href="api/ngRoute">ngRoute</a></h2>
-<p class="ng-scope">Use ngRoute to enable URL routing to your application. The ngRoute module supports URL management via both hashbang and HTML5 pushState.</p>
-<div class="alert alert-info ng-scope">Include the <strong>angular-route.js</strong> file and set <strong>ngRoute</strong> as a dependency for this to work in your application.</div>
+<p class="ng-scope">可以在你的应用中使用ngRoute实现路由功能。ngRoute支持通过hashbang和HTML5 pushState来管理URL。</p>
+<div class="alert alert-info ng-scope">在你的应用中包含<strong>angular-route.js</strong>文件并设置<strong>ngRoute</strong>为应用的依赖。</div>
 
 <table class="definition-table spaced ng-scope">
   <tbody><tr>
@@ -952,11 +952,11 @@ Angular的公共对象（public)都有前缀 <code><span class="pln">$</span></c
       <a href="api/ngRoute#service">Services / Factories</a>
     </td>
     <td>
-      The following services are used for route management:
+      下面的应用被用来实现路由管理
       <ul>
-        <li><a href="api/ngRoute/service/$routeParams">$routeParams</a> is used to access the querystring values present in the URL.</li>
-        <li><a href="api/ngRoute/service/$route">$route</a> is used to access the details of the route that is currently being accessed.</li>
-        <li><a href="api/ngRoute/provider/$routeProvider">$routeProvider</a> is used to register routes for the application.</li>
+        <li><a href="api/ngRoute/service/$routeParams">$routeParams</a> is 用于得到URL上的查询字段的值。</li>
+        <li><a href="api/ngRoute/service/$route">$route</a>用来到达当前路由的详细位置。</li>
+        <li><a href="api/ngRoute/provider/$routeProvider">$routeProvider</a> 用来注册路由。</li>
       </ul>
     </td>
   </tr>
@@ -965,14 +965,14 @@ Angular的公共对象（public)都有前缀 <code><span class="pln">$</span></c
       <a href="api/ngRoute#directive">Directives</a>
     </td>
     <td>
-      The <a href="api/ngRoute/directive/ngView">ngView</a> directive will display the template of the current route within the page.
+      The <a href="api/ngRoute/directive/ngView">ngView</a> 指令会在页面中显示当前路由的模板。
     </td>
   </tr>
 </tbody></table>
 
 
 <h2 id="-link-nganimate-nganimate-" class="ng-scope"><a href="api/ngAnimate">ngAnimate</a></h2>
-<p class="ng-scope">Use ngAnimate to enable animation features within your application. Various core ng directives will provide
+<p class="ng-scope">使用ngAnimate在你的应用中实现动画效果。如果你的应用中导入了ngAnimate模块，你可以使用多种ng指令来Various core ng directives will provide
 animation hooks into your application when ngAnimate is included. Animations are defined by using CSS transitions/animations
 or JavaScript callbacks.</p>
 <div class="alert alert-info ng-scope">Include the <strong>angular-animate.js</strong> file and set <strong>ngAnimate</strong> as a dependency for this to work in your application.</div>
