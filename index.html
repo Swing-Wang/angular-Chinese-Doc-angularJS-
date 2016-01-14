@@ -1,0 +1,1177 @@
+
+<html lang="en" ng-app="docsApp" ng-strict-di="" ng-controller="DocsController" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak]，[ng-cloak]，[data-ng-cloak]，[x-ng-cloak]，.ng-cloak，.x-ng-cloak，.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+  <meta name="viewport" content="width=device-width， initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge，chrome=1">
+  <meta name="Description" content="AngularJS is what HTML would have been， had it been designed for building web-apps.
+  Declarative templates with data-binding， MVC， dependency injection and great
+  testability story all implemented with pure client-side JavaScript!">
+  <meta name="fragment" content="!">
+  <title ng-bind-template="AngularJS: API: API Reference" class="ng-binding">AngularJS: API: API Reference</title>
+
+  <script type="text/javascript">
+    // dynamically add base tag as well as css and javascript files.
+    // we can't add css/js the usual way， because some browsers (FF) eagerly prefetch resources
+    // before the base attribute is added， causing 404 and terribly slow loading of the docs app.
+    (function() {
+      var indexFile = (location.pathname.match(/\/(index[^\.]*\.html)/) || [''， ''])[1]，
+        rUrl = /(#!\/|api|guide|misc|tutorial|error|index[^\.]*\.html).*$/，
+        baseUrl = location.href.replace(rUrl， indexFile)，
+        production = location.hostname === 'docs.angularjs.cn'，
+        headEl = document.getElementsByTagName('head')[0]，
+        sync = true;
+
+     
+
+
+      function addTag(name， attributes， sync) {
+        var el = document.createElement(name)，
+          attrName;
+
+        for (attrName in attributes) {
+          el.setAttribute(attrName， attributes[attrName]);
+        }
+
+        sync ? document.write(outerHTML(el)) : headEl.appendChild(el);
+      }
+
+      function outerHTML(node) {
+        // if IE， Chrome take the internal method otherwise build one
+        return node.outerHTML || (
+          function(n) {
+            var div = document.createElement('div')，
+              h;
+            div.appendChild(n);
+            h = div.innerHTML;
+            div = null;
+            return h;
+          })(node);
+      }
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/open-sans.css" type="text/css">
+  <link rel="stylesheet" href="css/prettify-theme.css" type="text/css">
+  <link rel="stylesheet" href="css/docs.css" type="text/css">
+  <link rel="stylesheet" href="css/animations.css" type="text/css">
+  <script src="js/jquery.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-resource.min.js">
+</script><script src="js/angular-route.min.js">
+</script><script src="js/angular-cookies.min.js">
+</script><script src="js/angular-sanitize.min.js"></script>
+<script src="js/angular-touch.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+  <script src="js/marked.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/dropdown-toggle.min.js"></script>
+  <script src="js/lunr.min.js"></script>
+  <script src="js/prettify.js"></script>
+  <script src="js/lang-css.js"></script>
+  <script src="js/versions-data.js"></script>
+  <script src="js/pages-data.js"></script>
+  <script src="js/nav-data.js"></script>
+  <script src="js/docs.min.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <header scroll-y-offset-element="" class="header header-fixed">
+      <section class="navbar navbar-inverse docs-navbar-primary ng-scope" ng-controller="DocsSearchCtrl">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 header-branding">
+              <a class="brand navbar-brand" href="http://angularjs.cn">
+                <img width="117" height="30" class="logo" ng-src="img/angularjs-for-header-only.svg" src="img/angularjs-for-header-only.svg">
+              </a>
+              <ul class="nav navbar-nav">
+                <li class="divider-vertical"></li>
+                <li><a href="http://angularjs.cn"><i class="icon-home icon-white"></i> 中文社区</a>
+                </li>
+                <li class="divider-vertical"></li>
+                <li class="dropdown active ng-isolate-scope">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icon-book icon-white"></i> 英文文档 <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="tutorial">Tutorial</a>
+                    </li>
+                    <li><a href="guide">Developer Guide</a>
+                    </li>
+                    <li><a href="api">API Reference</a>
+                    </li>
+                    <li><a href="error">Error Reference</a>
+                    </li>
+                    <li><a href="misc/contribute">Contribute</a>
+                    </li>
+                    <li><a href="http://cdn.angularjs.cn/angularjs/angularjs-latest.zip">Download</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="divider-vertical"></li>
+              </ul>
+            </div>
+            <form ng-class="{focus:focus}" class="navbar-search col-md-3 docs-search ng-pristine ng-valid" ng-submit="submit()">
+              <span class="glyphicon glyphicon-search search-icon"></span>
+              <input type="text" name="as_q" class="search-query ng-pristine ng-untouched ng-valid" placeholder="Click or press / to search" ng-focus="focus=true" ng-blur="focus=false" ng-change="search(q)" ng-model="q" docs-search-input="" autocomplete="off">
+            </form>
+          </div>
+        </div>
+        <div class="search-results-container ng-hide" ng-show="hasResults">
+          <div class="container">
+            <div class="search-results-frame">
+              <!-- ngRepeat: (key， value) in results -->
+            </div>
+            <a href="" ng-click="hideResults()" class="search-close">
+              <span class="glyphicon glyphicon-remove search-close-icon"></span> Close
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="sup-header">
+        <div class="container main-grid main-header-grid">
+          <div class="grid-left">
+            <div ng-controller="DocsVersionsCtrl" class="picker version-picker ng-scope">
+              <select ng-options="v as ('v' + v.version + (v.isSnapshot ? ' (snapshot)' : '')) group by getGroupName(v) for v in docs_versions" ng-model="docs_version" ng-change="jumpToDocsVersion(docs_version)" class="docs-version-jump ng-pristine ng-untouched ng-valid"><optgroup label="Latest"><option value="0" selected="selected" label="v1.3.9-local (snapshot)">v1.3.9-local (snapshot)</option><option value="35" label="v1.2.28">v1.2.28</option><option value="66" label="v1.1.5">v1.1.5</option><option value="72" label="v1.0.8">v1.0.8</option></optgroup><optgroup label="v1.3.x"><option value="1" label="v1.3.8">v1.3.8</option><option value="2" label="v1.3.7">v1.3.7</option><option value="3" label="v1.3.6">v1.3.6</option><option value="4" label="v1.3.5">v1.3.5</option><option value="5" label="v1.3.4">v1.3.4</option><option value="6" label="v1.3.3">v1.3.3</option><option value="7" label="v1.3.2">v1.3.2</option><option value="8" label="v1.3.1">v1.3.1</option><option value="9" label="v1.3.0">v1.3.0</option><option value="10" label="v1.3.0-rc.5">v1.3.0-rc.5</option><option value="11" label="v1.3.0-rc.4">v1.3.0-rc.4</option><option value="12" label="v1.3.0-rc.3">v1.3.0-rc.3</option><option value="13" label="v1.3.0-rc.2">v1.3.0-rc.2</option><option value="14" label="v1.3.0-rc.1">v1.3.0-rc.1</option><option value="15" label="v1.3.0-rc.0">v1.3.0-rc.0</option><option value="16" label="v1.3.0-beta.19">v1.3.0-beta.19</option><option value="17" label="v1.3.0-beta.18">v1.3.0-beta.18</option><option value="18" label="v1.3.0-beta.17">v1.3.0-beta.17</option><option value="19" label="v1.3.0-beta.16">v1.3.0-beta.16</option><option value="20" label="v1.3.0-beta.15">v1.3.0-beta.15</option><option value="21" label="v1.3.0-beta.14">v1.3.0-beta.14</option><option value="22" label="v1.3.0-beta.13">v1.3.0-beta.13</option><option value="23" label="v1.3.0-beta.12">v1.3.0-beta.12</option><option value="24" label="v1.3.0-beta.11">v1.3.0-beta.11</option><option value="25" label="v1.3.0-beta.10">v1.3.0-beta.10</option><option value="26" label="v1.3.0-beta.9">v1.3.0-beta.9</option><option value="27" label="v1.3.0-beta.8">v1.3.0-beta.8</option><option value="28" label="v1.3.0-beta.7">v1.3.0-beta.7</option><option value="29" label="v1.3.0-beta.6">v1.3.0-beta.6</option><option value="30" label="v1.3.0-beta.5">v1.3.0-beta.5</option><option value="31" label="v1.3.0-beta.4">v1.3.0-beta.4</option><option value="32" label="v1.3.0-beta.3">v1.3.0-beta.3</option><option value="33" label="v1.3.0-beta.2">v1.3.0-beta.2</option><option value="34" label="v1.3.0-beta.1">v1.3.0-beta.1</option></optgroup><optgroup label="v1.2.x"><option value="36" label="v1.2.27">v1.2.27</option><option value="37" label="v1.2.26">v1.2.26</option><option value="38" label="v1.2.25">v1.2.25</option><option value="39" label="v1.2.24">v1.2.24</option><option value="40" label="v1.2.23">v1.2.23</option><option value="41" label="v1.2.22">v1.2.22</option><option value="42" label="v1.2.21">v1.2.21</option><option value="43" label="v1.2.20">v1.2.20</option><option value="44" label="v1.2.19">v1.2.19</option><option value="45" label="v1.2.18">v1.2.18</option><option value="46" label="v1.2.17">v1.2.17</option><option value="47" label="v1.2.16">v1.2.16</option><option value="48" label="v1.2.15">v1.2.15</option><option value="49" label="v1.2.14">v1.2.14</option><option value="50" label="v1.2.13">v1.2.13</option><option value="51" label="v1.2.12">v1.2.12</option><option value="52" label="v1.2.11">v1.2.11</option><option value="53" label="v1.2.10">v1.2.10</option><option value="54" label="v1.2.9">v1.2.9</option><option value="55" label="v1.2.8">v1.2.8</option><option value="56" label="v1.2.7">v1.2.7</option><option value="57" label="v1.2.6">v1.2.6</option><option value="58" label="v1.2.5">v1.2.5</option><option value="59" label="v1.2.4">v1.2.4</option><option value="60" label="v1.2.3">v1.2.3</option><option value="61" label="v1.2.2">v1.2.2</option><option value="62" label="v1.2.1">v1.2.1</option><option value="63" label="v1.2.0">v1.2.0</option><option value="64" label="v1.2.0-rc.3">v1.2.0-rc.3</option><option value="65" label="v1.2.0-rc.2">v1.2.0-rc.2</option></optgroup><optgroup label="v1.1.x"><option value="67" label="v1.1.4">v1.1.4</option><option value="68" label="v1.1.3">v1.1.3</option><option value="69" label="v1.1.2">v1.1.2</option><option value="70" label="v1.1.1">v1.1.1</option><option value="71" label="v1.1.0">v1.1.0</option></optgroup><optgroup label="v1.0.x"><option value="73" label="v1.0.7">v1.0.7</option><option value="74" label="v1.0.6">v1.0.6</option><option value="75" label="v1.0.5">v1.0.5</option><option value="76" label="v1.0.4">v1.0.4</option><option value="77" label="v1.0.3">v1.0.3</option><option value="78" label="v1.0.2">v1.0.2</option><option value="79" label="v1.0.1">v1.0.1</option><option value="80" label="v1.0.0">v1.0.0</option><option value="81" label="v1.0.0-rc2">v1.0.0-rc2</option></optgroup></select>
+            </div>
+          </div>
+          <div class="grid-right">
+            <ul class="nav-breadcrumb">
+              <!-- ngRepeat: crumb in breadcrumb --><li ng-repeat="crumb in breadcrumb" class="nav-breadcrumb-entry naked-list ng-scope">
+                <span class="divider"> /</span>
+                <a ng-href="api" class="ng-binding" href="api">API Reference</a>
+              </li><!-- end ngRepeat: crumb in breadcrumb -->
+            </ul>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <section role="main" class="container main-body">
+      <div class="main-grid main-body-grid">
+        <div class="grid-left">
+          <a class="btn toc-toggle visible-xs" ng-click="toc=!toc">Show / Hide Table of Contents</a>
+          <div class="side-navigation ng-hide" ng-show="toc==true">
+            <ul class="nav-list naked-list">
+              <!-- ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ng" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ng</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function" class="ng-binding">function</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.bind" class="ng-binding">angular.bind</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.bootstrap" class="ng-binding">angular.bootstrap</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.copy" class="ng-binding">angular.copy</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.element" class="ng-binding">angular.element</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.equals" class="ng-binding">angular.equals</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.extend" class="ng-binding">angular.extend</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.forEach" class="ng-binding">angular.forEach</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.fromJson" class="ng-binding">angular.fromJson</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.identity" class="ng-binding">angular.identity</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.injector" class="ng-binding">angular.injector</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isArray" class="ng-binding">angular.isArray</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isDate" class="ng-binding">angular.isDate</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isDefined" class="ng-binding">angular.isDefined</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isElement" class="ng-binding">angular.isElement</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isFunction" class="ng-binding">angular.isFunction</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isNumber" class="ng-binding">angular.isNumber</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isObject" class="ng-binding">angular.isObject</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isString" class="ng-binding">angular.isString</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.isUndefined" class="ng-binding">angular.isUndefined</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.lowercase" class="ng-binding">angular.lowercase</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.module" class="ng-binding">angular.module</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.noop" class="ng-binding">angular.noop</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.reloadWithDebugInfo" class="ng-binding">angular.reloadWithDebugInfo</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.toJson" class="ng-binding">angular.toJson</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/function/angular.uppercase" class="ng-binding">angular.uppercase</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive" class="ng-binding">directive</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/a" class="ng-binding">a</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/form" class="ng-binding">form</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/input" class="ng-binding">input</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[checkbox]" class="ng-binding">input[checkbox]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[date]" class="ng-binding">input[date]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[datetime-local]" class="ng-binding">input[datetime-local]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[email]" class="ng-binding">input[email]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[month]" class="ng-binding">input[month]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[number]" class="ng-binding">input[number]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[radio]" class="ng-binding">input[radio]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[text]" class="ng-binding">input[text]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[time]" class="ng-binding">input[time]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[url]" class="ng-binding">input[url]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/input/input[week]" class="ng-binding">input[week]</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngApp" class="ng-binding">ngApp</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngBind" class="ng-binding">ngBind</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngBindHtml" class="ng-binding">ngBindHtml</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngBindTemplate" class="ng-binding">ngBindTemplate</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngBlur" class="ng-binding">ngBlur</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngChange" class="ng-binding">ngChange</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngChecked" class="ng-binding">ngChecked</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngClass" class="ng-binding">ngClass</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngClassEven" class="ng-binding">ngClassEven</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngClassOdd" class="ng-binding">ngClassOdd</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngClick" class="ng-binding">ngClick</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngCloak" class="ng-binding">ngCloak</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngController" class="ng-binding">ngController</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngCopy" class="ng-binding">ngCopy</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngCsp" class="ng-binding">ngCsp</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngCut" class="ng-binding">ngCut</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngDblclick" class="ng-binding">ngDblclick</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngDisabled" class="ng-binding">ngDisabled</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngFocus" class="ng-binding">ngFocus</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngForm" class="ng-binding">ngForm</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngHide" class="ng-binding">ngHide</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngHref" class="ng-binding">ngHref</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngIf" class="ng-binding">ngIf</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngInclude" class="ng-binding">ngInclude</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngInit" class="ng-binding">ngInit</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngKeydown" class="ng-binding">ngKeydown</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngKeypress" class="ng-binding">ngKeypress</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngKeyup" class="ng-binding">ngKeyup</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngList" class="ng-binding">ngList</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngModel" class="ng-binding">ngModel</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngModelOptions" class="ng-binding">ngModelOptions</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngMousedown" class="ng-binding">ngMousedown</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngMouseenter" class="ng-binding">ngMouseenter</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngMouseleave" class="ng-binding">ngMouseleave</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngMousemove" class="ng-binding">ngMousemove</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngMouseover" class="ng-binding">ngMouseover</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngMouseup" class="ng-binding">ngMouseup</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngNonBindable" class="ng-binding">ngNonBindable</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngOpen" class="ng-binding">ngOpen</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngPaste" class="ng-binding">ngPaste</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngPluralize" class="ng-binding">ngPluralize</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngReadonly" class="ng-binding">ngReadonly</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngRepeat" class="ng-binding">ngRepeat</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngSelected" class="ng-binding">ngSelected</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngShow" class="ng-binding">ngShow</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngSrc" class="ng-binding">ngSrc</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngSrcset" class="ng-binding">ngSrcset</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngStyle" class="ng-binding">ngStyle</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngSubmit" class="ng-binding">ngSubmit</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngSwitch" class="ng-binding">ngSwitch</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngTransclude" class="ng-binding">ngTransclude</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/ngValue" class="ng-binding">ngValue</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/script" class="ng-binding">script</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/select" class="ng-binding">select</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/directive/textarea" class="ng-binding">textarea</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/object" class="ng-binding">object</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/object/angular.version" class="ng-binding">angular.version</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/type" class="ng-binding">type</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/type/$cacheFactory.Cache" class="ng-binding">$cacheFactory.Cache</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/type/$compile.directive.Attributes" class="ng-binding">$compile.directive.Attributes</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/type/$rootScope.Scope" class="ng-binding">$rootScope.Scope</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/type/angular.Module" class="ng-binding">angular.Module</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/type/form.FormController" class="ng-binding">form.FormController</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/type/ngModel.NgModelController" class="ng-binding">ngModel.NgModelController</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider" class="ng-binding">provider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$anchorScrollProvider" class="ng-binding">$anchorScrollProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$animateProvider" class="ng-binding">$animateProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$compileProvider" class="ng-binding">$compileProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$controllerProvider" class="ng-binding">$controllerProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$filterProvider" class="ng-binding">$filterProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$httpProvider" class="ng-binding">$httpProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$interpolateProvider" class="ng-binding">$interpolateProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$locationProvider" class="ng-binding">$locationProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$logProvider" class="ng-binding">$logProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$parseProvider" class="ng-binding">$parseProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$rootScopeProvider" class="ng-binding">$rootScopeProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$sceDelegateProvider" class="ng-binding">$sceDelegateProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/provider/$sceProvider" class="ng-binding">$sceProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$anchorScroll" class="ng-binding">$anchorScroll</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$animate" class="ng-binding">$animate</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$cacheFactory" class="ng-binding">$cacheFactory</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$compile" class="ng-binding">$compile</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$controller" class="ng-binding">$controller</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$document" class="ng-binding">$document</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$exceptionHandler" class="ng-binding">$exceptionHandler</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$filter" class="ng-binding">$filter</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$http" class="ng-binding">$http</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$httpBackend" class="ng-binding">$httpBackend</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$interpolate" class="ng-binding">$interpolate</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$interval" class="ng-binding">$interval</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$locale" class="ng-binding">$locale</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$location" class="ng-binding">$location</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$log" class="ng-binding">$log</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$parse" class="ng-binding">$parse</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$q" class="ng-binding">$q</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$rootElement" class="ng-binding">$rootElement</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$rootScope" class="ng-binding">$rootScope</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$sce" class="ng-binding">$sce</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$sceDelegate" class="ng-binding">$sceDelegate</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$templateCache" class="ng-binding">$templateCache</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$templateRequest" class="ng-binding">$templateRequest</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$timeout" class="ng-binding">$timeout</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/service/$window" class="ng-binding">$window</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter" class="ng-binding">filter</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/currency" class="ng-binding">currency</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/date" class="ng-binding">date</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/filter" class="ng-binding">filter</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/json" class="ng-binding">json</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/limitTo" class="ng-binding">limitTo</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/lowercase" class="ng-binding">lowercase</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/number" class="ng-binding">number</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/orderBy" class="ng-binding">orderBy</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ng/filter/uppercase" class="ng-binding">uppercase</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/auto" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">auto</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/auto/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/auto/service/$injector" class="ng-binding">$injector</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/auto/service/$provide" class="ng-binding">$provide</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngAnimate" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngAnimate</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngAnimate/provider" class="ng-binding">provider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngAnimate/provider/$animateProvider" class="ng-binding">$animateProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngAnimate/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngAnimate/service/$animate" class="ng-binding">$animate</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngAria" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngAria</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngAria/provider" class="ng-binding">provider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngAria/provider/$ariaProvider" class="ng-binding">$ariaProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngAria/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngAria/service/$aria" class="ng-binding">$aria</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngCookies" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngCookies</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngCookies/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngCookies/service/$cookieStore" class="ng-binding">$cookieStore</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngCookies/service/$cookies" class="ng-binding">$cookies</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngMessages" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngMessages</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMessages/directive" class="ng-binding">directive</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMessages/directive/ngMessage" class="ng-binding">ngMessage</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMessages/directive/ngMessages" class="ng-binding">ngMessages</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngMock" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngMock</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/object" class="ng-binding">object</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/object/angular.mock" class="ng-binding">angular.mock</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/provider" class="ng-binding">provider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/provider/$exceptionHandlerProvider" class="ng-binding">$exceptionHandlerProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/service/$exceptionHandler" class="ng-binding">$exceptionHandler</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/service/$httpBackend" class="ng-binding">$httpBackend</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/service/$interval" class="ng-binding">$interval</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/service/$log" class="ng-binding">$log</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/service/$timeout" class="ng-binding">$timeout</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/type" class="ng-binding">type</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/type/$rootScope.Scope" class="ng-binding">$rootScope.Scope</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/type/angular.mock.TzDate" class="ng-binding">angular.mock.TzDate</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/function" class="ng-binding">function</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/function/angular.mock.dump" class="ng-binding">angular.mock.dump</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/function/angular.mock.inject" class="ng-binding">angular.mock.inject</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMock/function/angular.mock.module" class="ng-binding">angular.mock.module</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngMockE2E" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngMockE2E</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMockE2E/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngMockE2E/service/$httpBackend" class="ng-binding">$httpBackend</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngResource" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngResource</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngResource/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngResource/service/$resource" class="ng-binding">$resource</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngRoute" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngRoute</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngRoute/directive" class="ng-binding">directive</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngRoute/directive/ngView" class="ng-binding">ngView</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngRoute/provider" class="ng-binding">provider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngRoute/provider/$routeProvider" class="ng-binding">$routeProvider</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngRoute/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngRoute/service/$route" class="ng-binding">$route</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngRoute/service/$routeParams" class="ng-binding">$routeParams</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngSanitize" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngSanitize</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngSanitize/filter" class="ng-binding">filter</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngSanitize/filter/linky" class="ng-binding">linky</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngSanitize/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngSanitize/service/$sanitize" class="ng-binding">$sanitize</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name --><li ng-repeat="navGroup in currentArea.navGroups track by navGroup.name" class="nav-index-group ng-scope">
+                <a href="api/ngTouch" ng-class="navClass(navGroup)" class="nav-index-group-heading ng-binding active">ngTouch</a>
+                <ul class="aside-nav">
+                  <!-- ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngTouch/directive" class="ng-binding">directive</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngTouch/directive/ngClick" class="ng-binding">ngClick</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngTouch/directive/ngSwipeLeft" class="ng-binding">ngSwipeLeft</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngTouch/directive/ngSwipeRight" class="ng-binding">ngSwipeRight</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active nav-index-section">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngTouch/service" class="ng-binding">service</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems --><li ng-repeat="navItem in navGroup.navItems" ng-class="navClass(navItem)" class="nav-index-listing ng-scope active">
+                    <!-- ngIf: navItem.extra.href -->
+                    <a tabindex="2" ng-class="linkClass(navItem)" href="api/ngTouch/service/$swipe" class="ng-binding">$swipe</a>
+                  </li><!-- end ngRepeat: navItem in navGroup.navItems -->
+                </ul>
+              </li><!-- end ngRepeat: navGroup in currentArea.navGroups track by navGroup.name -->
+            </ul>
+            <a href="" ng-click="toc=false" class="toc-close visible-xs">
+              <span class="glyphicon glyphicon-remove toc-close-icon"></span> Close
+            </a>
+          </div>
+        </div>
+        <div class="grid-right">
+          <div id="loading" ng-show="loading" class="ng-hide">Loading...</div>
+          <!-- ngInclude: partialPath --><div ng-hide="loading" ng-include="partialPath" autoscroll="" class="ng-scope"><a href="https://github.com/angular/angular.js/edit/master/docs/content/api/index.ngdoc?message=docs(API Reference)%3A%20describe%20your%20change...#L1" class="improve-docs btn btn-primary ng-scope"><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+          <h1 id="angularjs-api-docs" class="ng-scope">AngularJS API 文档</h1>
+<p class="ng-scope">欢迎来到AngularJS API文档页面。这些页面包含了AngularJS的参考资料。<strong ng-bind="version" class="ng-binding">（版本：1.3.9-local+sha.a3c3bf3  snapshot）</strong>.</p>
+<p class="ng-scope">这篇文档按照包含AngularJS应用的各种组件的<strong><a href="guide/module">modules</a></strong>来组织。这些组件有<a href="guide/directive">directives</a>， <a href="guide/services">services</a>， <a href="guide/filter">filters</a>， <a href="guide/providers">providers</a>， <a href="guide/templates">templates</a>， 全局APIs，和模拟测试。</p>
+<div class="alert alert-info ng-scope">
+<strong>Angular的前缀 <code><span class="pln">$</span></code>和<code><span class="pln">$$</span></code></strong>:
+
+为了防止和你的代码发生命名冲突，
+Angular的公共对象（public)都有前缀 <code><span class="pln">$</span></code>，私有对象都有前缀<code><span class="pln">$$</span></code>。请不要在你的代码里面使用<code><span class="pln">$</span></code> 或者 <code><span class="pln">$$</span></code> 前缀。
+</div>
+
+<h2 id="angular-modules" class="ng-scope">Angular Modules</h2>
+<h2 id="-link-ng-ng-core-module-" class="ng-scope"><a href="api/ng">ng (核心模块)</a></h2>
+<p class="ng-scope">This module is provided by default and contains the core components of AngularJS.</p>
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td><a href="api/ng#directive">Directives</a></td>
+    <td>
+      <p>
+        This is the core collection of directives you would use in your template code to build an AngularJS application.
+      </p>
+
+      <p>
+        Some examples include:
+          <a href="api/ng/directive/ngClick">ngClick</a>，
+          <a href="api/ng/directive/ngInclude">ngInclude</a>，
+          <a href="api/ng/directive/ngRepeat">ngRepeat</a>，
+          etc… <br>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ng#service">Services / Factories</a>
+    </td>
+    <td>
+      <p>
+        This is the core collection of services which are used within the DI of your application.
+      </p>
+      <p>
+        Some examples include:
+          <a href="api/ng/service/$compile">$compile</a>，
+          <a href="api/ng/service/$http">$http</a>，
+          <a href="api/ng/service/$location">$location</a>，
+          etc…
+      </p><p>
+    </p></td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ng#filter">Filters</a>
+    </td>
+    <td>
+      <p>
+        The core filters available in the ng module are used to transform template data before it is rendered within directives and expressions.
+      </p>
+      <p>
+        Some examples include:
+          <a href="api/ng/filter/filter">filter</a>，
+          <a href="api/ng/filter/date">date</a>，
+          <a href="api/ng/filter/currency">currency</a>，
+          <a href="api/ng/filter/lowercase">lowercase</a>，
+          <a href="api/ng/filter/uppercase">uppercase</a>，
+            etc...
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ng#function">Global APIs</a>
+    </td>
+    <td>
+      <p>
+        The core global API functions are attached to the angular object. These core functions are useful for low level JavaScript operations within your application.
+      </p>
+      <p>
+        Some examples include:
+        <a href="api/ng/function/angular.copy">angular.copy()</a>，
+        <a href="api/ng/function/angular.equals">angular.equals()</a>，
+        <a href="api/ng/function/angular.element">angular.element()</a>，
+          etc...
+      </p>
+    </td>
+  </tr>
+</tbody></table>
+
+
+<h2 id="-link-ngroute-ngroute-" class="ng-scope"><a href="api/ngRoute">ngRoute</a></h2>
+<p class="ng-scope">Use ngRoute to enable URL routing to your application. The ngRoute module supports URL management via both hashbang and HTML5 pushState.</p>
+<div class="alert alert-info ng-scope">Include the <strong>angular-route.js</strong> file and set <strong>ngRoute</strong> as a dependency for this to work in your application.</div>
+
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td>
+      <a href="api/ngRoute#service">Services / Factories</a>
+    </td>
+    <td>
+      The following services are used for route management:
+      <ul>
+        <li><a href="api/ngRoute/service/$routeParams">$routeParams</a> is used to access the querystring values present in the URL.</li>
+        <li><a href="api/ngRoute/service/$route">$route</a> is used to access the details of the route that is currently being accessed.</li>
+        <li><a href="api/ngRoute/provider/$routeProvider">$routeProvider</a> is used to register routes for the application.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ngRoute#directive">Directives</a>
+    </td>
+    <td>
+      The <a href="api/ngRoute/directive/ngView">ngView</a> directive will display the template of the current route within the page.
+    </td>
+  </tr>
+</tbody></table>
+
+
+<h2 id="-link-nganimate-nganimate-" class="ng-scope"><a href="api/ngAnimate">ngAnimate</a></h2>
+<p class="ng-scope">Use ngAnimate to enable animation features within your application. Various core ng directives will provide
+animation hooks into your application when ngAnimate is included. Animations are defined by using CSS transitions/animations
+or JavaScript callbacks.</p>
+<div class="alert alert-info ng-scope">Include the <strong>angular-animate.js</strong> file and set <strong>ngAnimate</strong> as a dependency for this to work in your application.</div>
+
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td>
+      <a href="api/ngAnimate#service">Services / Factories</a>
+    </td>
+    <td>
+      Use <a href="api/ngAnimate/service/$animate">$animate</a> to trigger animation operations within your directive code.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ngAnimate">CSS-based animations</a>
+    </td>
+    <td>
+      Follow ngAnimate’s CSS naming structure to reference CSS transitions / keyframe animations in AngularJS. Once defined， the animation can be triggered by referencing the CSS class within the HTML template code.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ngAnimate">JS-based animations</a>
+    </td>
+    <td>
+      Use <a href="api/ng/type/angular.Module#animation">module.animation()</a> to register a JavaScript animation. Once registered， the animation can be triggered by referencing the CSS class within the HTML template code.
+    </td>
+  </tr>
+</tbody></table>
+
+<h2 id="-link-ngaria-ngaria-" class="ng-scope"><a href="api/ngAria">ngAria</a></h2>
+<p class="ng-scope">Use ngAria to inject common accessibility attributes into directives and improve the experience for users with disabilities.</p>
+<div class="alert alert-info ng-scope">Include the <strong>angular-aria.js</strong> file and set ngAria as a dependency for this to work in your application.</div>
+
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td>
+      <a href="api/ngAria#service">Services</a>
+    </td>
+    <td>
+      <p>
+          The <a href="api/ngAria/service/$aria">$aria</a> service contains helper methods for applying ARIA attributes to HTML.
+      </p><p>
+      </p><p>
+          <a href="api/ngAria/provider/$ariaProvider">$ariaProvider</a> is used for configuring ARIA attributes.
+      </p>
+    </td>
+  </tr>
+</tbody></table>
+
+<h2 id="-link-ngresource-ngresource-" class="ng-scope"><a href="api/ngResource">ngResource</a></h2>
+<p class="ng-scope">Use the ngResource module when querying and posting data to a REST API.</p>
+<div class="alert alert-info ng-scope">Include the <strong>angular-resource.js</strong> file and set <strong>ngResource</strong> as a dependency for this to work in your application.</div>
+
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td>
+      <a href="api/ngResource#service">Services / Factories</a>
+    </td>
+    <td>
+      The <a href="api/ngResource/service/$resource">$resource</a> service is used to define RESTful objects which communicate with a REST API.
+    </td>
+  </tr>
+</tbody></table>
+
+<h2 id="-link-ngcookies-ngcookies-" class="ng-scope"><a href="api/ngCookies">ngCookies</a></h2>
+<p class="ng-scope">Use the ngCookies module to handle cookie management within your application.</p>
+<div class="alert alert-info ng-scope">Include the <strong>angular-cookies.js</strong> file and set <strong>ngCookies</strong> as a dependency for this to work in your application.</div>
+
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td>
+      <a href="api/ngCookies#service">Services / Factories</a>
+    </td>
+    <td>
+      The following services are used for cookie management:
+      <ul>
+        <li>The <a href="api/ngCookies/service/$cookies">$cookie</a> service is a convenient wrapper to store simple data within browser cookies.</li>
+        <li><a href="api/ngCookies/service/$cookieStore">$cookieStore</a> is used to store more complex data using serialization.</li>
+      </ul>
+    </td>
+  </tr>
+</tbody></table>
+
+<h2 id="-link-ngtouch-ngtouch-" class="ng-scope"><a href="api/ngTouch">ngTouch</a></h2>
+<p class="ng-scope">Use ngTouch when developing for mobile browsers/devices.</p>
+<div class="alert alert-info ng-scope">Include the <strong>angular-touch.js</strong> file and set <strong>ngTouch</strong> as a dependency for this to work in your application.</div>
+
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td>
+      <a href="api/ngTouch#service">Services / Factories</a>
+    </td>
+    <td>
+      The <a href="api/ngTouch/service/$swipe">$swipe</a> service is used to register and manage mobile DOM events.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ngTouch#directive">Directives</a>
+    </td>
+    <td>
+      Various directives are available in ngTouch to emulate mobile DOM events.
+    </td>
+  </tr>
+</tbody></table>
+
+<h2 id="-link-ngsanitize-ngsanitize-" class="ng-scope"><a href="api/ngSanitize">ngSanitize</a></h2>
+<p class="ng-scope">Use ngSanitize to securely parse and manipulate HTML data in your application.</p>
+<div class="alert alert-info ng-scope">Include the <strong>angular-sanitize.js</strong> file and set <strong>ngSanitize</strong> as a dependency for this to work in your application.</div>
+
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td>
+      <a href="api/ngSanitize#service">Services / Factories</a>
+    </td>
+    <td>
+      The <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service is used to clean up dangerous HTML code in a quick and convenient way.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ngSanitize#filter">Filters</a>
+    </td>
+    <td>
+      The <a href="api/ngSanitize/filter/linky">linky filter</a> is used to turn URLs into HTML links within the provided string.
+    </td>
+  </tr>
+</tbody></table>
+
+<h2 id="-link-ngmock-ngmock-" class="ng-scope"><a href="api/ngMock">ngMock</a></h2>
+<p class="ng-scope">Use ngMock to inject and mock modules， factories， services and providers within your unit tests.</p>
+<div class="alert alert-info ng-scope">Include the <strong>angular-mocks.js</strong> file into your test runner for this to work.</div>
+
+<table class="definition-table spaced ng-scope">
+  <tbody><tr>
+    <td>
+      <a href="api/ngMock#service">Services / Factories</a>
+    </td>
+    <td>
+      <p>
+        ngMock will extend the behavior of various core services to become testing aware and manageable in a synchronous manner.
+      </p><p>
+
+      </p><p>
+        Some examples include:
+          <a href="api/ngMock/service/$timeout">$timeout</a>，
+          <a href="api/ngMock/service/$interval">$interval</a>，
+          <a href="api/ngMock/service/$log">$log</a>，
+          <a href="api/ngMock/service/$httpBackend">$httpBackend</a>，
+          etc...
+      </p><p>
+    </p></td>
+  </tr>
+  <tr>
+    <td>
+      <a href="api/ngMock#function">Global APIs</a>
+    </td>
+    <td>
+      <p>
+        Various helper functions are available to inject and mock modules within unit test code.
+      </p>
+
+      <p>
+        Some examples
+          <a href="api/ngMock/function/angular.mock.inject">inject()</a>，
+          <a href="api/ngMock/function/angular.mock.module">module()</a>，
+          <a href="api/ngMock/function/angular.mock.dump">dump()</a>，
+          etc...
+      </p><p>
+    </p></td>
+  </tr>
+</tbody></table>
+
+</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="pull-right"><a back-to-top="">Back to top</a>
+        </p>
+
+        <p>
+          Super-powered by Google ©2010-2014 (
+          <a id="version" ng-href="https://github.com/angular/angular.js/blob/master/CHANGELOG.md#1.3.9-local+sha.a3c3bf3" ng-bind-template="v1.3.9-local+sha.a3c3bf3  snapshot" class="ng-binding" href="https://github.com/angular/angular.js/blob/master/CHANGELOG.md#1.3.9-local+sha.a3c3bf3">v1.3.9-local+sha.a3c3bf3  snapshot</a>
+          )
+        </p>
+        <p>
+          Code licensed under the
+          <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
+        MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+
+
+</body></html>
